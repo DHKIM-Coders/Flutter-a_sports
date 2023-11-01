@@ -10,6 +10,7 @@ class _GameNewScreenState extends State<GameNewScreen> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController gameDateController = TextEditingController();
   final TextEditingController introController = TextEditingController();
+  final TextEditingController gameDetailsController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class _GameNewScreenState extends State<GameNewScreen> {
             TextFormField(
               controller: titleController,
               decoration: InputDecoration(
-                labelText: "게임 제목",
+                labelText: "경기 상대",
                 border: OutlineInputBorder(),
               ),
             ),
@@ -38,7 +39,7 @@ class _GameNewScreenState extends State<GameNewScreen> {
             TextFormField(
               controller: gameDateController,
               decoration: InputDecoration(
-                labelText: "게임 일자",
+                labelText: "경기 일자",
                 border: OutlineInputBorder(),
               ),
             ),
@@ -46,26 +47,34 @@ class _GameNewScreenState extends State<GameNewScreen> {
             TextFormField(
               controller: introController,
               decoration: InputDecoration(
-                labelText: "게임 소개",
+                labelText: "경기 주최",
                 border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 16),
+            TextFormField(
+              controller: gameDetailsController,
+              decoration: InputDecoration(
+                labelText: "경기 상세내용",
+                border: OutlineInputBorder(),
+              ),
+              minLines: 5, // 최소 라인 수
+              maxLines: 10, // 최대 라인 수
+              keyboardType: TextInputType.multiline,
+            ),
+            SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
-                // 게임 정보를 추가하고 저장하는 코드
                 GameInfo gameInfo = GameInfo(
-                  groundImage: AssetImage("assets/images/default_image.jpg"), // 이미지 경로 또는 사용자가 업로드한 이미지를 설정
-                  postId: UniqueKey().toString(), // 고유한 ID 생성 (여기서는 UniqueKey를 사용)
+                  groundImage: AssetImage("assets/images/default_image.jpg"),
+                  postId: UniqueKey().toString(),
                   title: titleController.text,
                   gameDate: gameDateController.text,
                   intro: introController.text,
-
+                  gameDetails: gameDetailsController.text,
                 );
 
-                gameExamples.add(gameInfo); // 정보를 gameExamples 리스트에 추가
-
-                // GameNewScreen을 닫아서 GameScreen으로 돌아갑니다.
+                gameExamples.add(gameInfo);
                 Navigator.pop(context);
               },
               child: Text("등록"),

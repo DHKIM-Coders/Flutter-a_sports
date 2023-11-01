@@ -38,6 +38,11 @@ class GameDetailScreen extends StatelessWidget {
             Text(
               gameInfo.intro,
               style: TextStyle(fontSize: 16),
+
+            ),
+            Text(
+              gameInfo.gameDetails,
+              style: TextStyle(fontSize: 16),
             ),
           ],
         ),
